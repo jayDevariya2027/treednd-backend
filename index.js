@@ -1,7 +1,11 @@
 // server.js
 const express = require('express');
 const bodyParser = require('body-parser');
-require('dotenv').config();
+const dotenv = require('dotenv');
+const connectDB = require('./db');
+
+
+dotenv.config({ path: "config/config.env" })
 
 const app = express();
 const port = process.env.PORT || 5000;
@@ -18,3 +22,5 @@ app.get('/', (req, res) => {
 app.listen(port, () => {
     console.log(`Server is running on port ${port}`);
 });
+
+connectDB(process.env.MONGO_URL)
